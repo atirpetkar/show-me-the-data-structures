@@ -130,6 +130,7 @@ class LRU_Cache(object):
 
 
 # Test case 1 - set cache within capacity and try get with exist and non-exist key
+print("Initialize an empty cache of capacity 5")
 our_cache = LRU_Cache(5)
 print("Put key:value 1:1 into cache")
 our_cache.set(1, 1)
@@ -182,3 +183,14 @@ print(cache_value)
 cache_value = our_cache.get(6)       # return 6
 print(cache_value)
 # Should print 6
+
+
+# Test case 3 - empty cache should return -1 for all keys
+print("Initialize an empty cache of capacity 5")
+our_cache = LRU_Cache(5)
+cache_value = our_cache.get(1)       # returns -1
+print(cache_value)
+# Should print -1
+cache_value = our_cache.get(2)       # returns -1
+print(cache_value)
+# Should print -1
