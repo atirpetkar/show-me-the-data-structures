@@ -40,7 +40,11 @@ class HuffmanTree(object):
 
             node_str_list.append(str(node))
 
+            if node.left:
+                print(f">>>>>>>>>>>>>>>>left: {node.left.data}")
             traverse(node.left)
+            if node.right:
+                print(f">>>>>>>>>>>>>>>>right: {node.right.left}")
             traverse(node.right)
 
         traverse(self.root)
