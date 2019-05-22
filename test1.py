@@ -14,7 +14,14 @@ class HuffmanNode(object):
         self.right = None
 
     def __str__(self):
-        return f"Node type: {self.node_type}, data: {self.data}, frequency: {self.frequency}"
+        output_str = f"------Node type: {self.node_type}, data: {self.data}, frequency: {self.frequency}------\n"
+
+        # if self.left:
+        #     output_str += f">>>>>>Left node: {self.left.data}<<<<<<<<<<<\n"
+        # if self.right:
+        #     output_str += f">>>>>>Right node: {self.right.data}<<<<<<<<<<<\n"
+
+        return output_str
 
 
 class HuffmanTree(object):
@@ -79,6 +86,8 @@ def build_sub_tree_from_tuples(tuple_left, tuple_right):
     summary_freq_node.right = huff_node_right
     sub_tree.root = summary_freq_node
 
+    # print(f"sub-tree: {sub_tree}")
+
     return sub_tree, freq_sum
 
 
@@ -121,6 +130,7 @@ def build_huffman_tree(data):
 
         # Sort the list again
         input_str_char_freq_tuple_list.sort(key=lambda r: r[1])
+        # print(input_str_char_freq_tuple_list)
 
     huffman_tree = input_str_char_freq_tuple_list[0]
 
@@ -128,7 +138,7 @@ def build_huffman_tree(data):
 
 
 # input_str = "The bird is the word"
-input_str = "aabc"
+input_str = "abc"
 
 huffman_tree = build_huffman_tree(input_str)
 print(huffman_tree)
