@@ -16,11 +16,6 @@ class HuffmanNode(object):
     def __str__(self):
         output_str = f"------Node type: {self.node_type}, data: {self.data}, frequency: {self.frequency}------\n"
 
-        # if self.left:
-        #     output_str += f">>>>>>Left node: {self.left.data}<<<<<<<<<<<\n"
-        # if self.right:
-        #     output_str += f">>>>>>Right node: {self.right.data}<<<<<<<<<<<\n"
-
         return output_str
 
 
@@ -40,11 +35,7 @@ class HuffmanTree(object):
 
             node_str_list.append(str(node))
 
-            if node.left:
-                print(f">>>>>>>>>>>>>>>>left: {node.left.data}")
             traverse(node.left)
-            if node.right:
-                print(f">>>>>>>>>>>>>>>>right: {node.right.left}")
             traverse(node.right)
 
         traverse(self.root)
@@ -71,7 +62,7 @@ def build_sub_tree_from_tuples(tuple_left, tuple_right):
     if isinstance(tuple_left_data, str):
         huff_node_left = HuffmanNode(data=tuple_left_data, node_type='character', frequency=tuple_left_freq)
     else:
-        huff_node_left = HuffmanNode(data=tuple_left_data.root, node_type='frequency', frequency=tuple_left_freq)
+        huff_node_left = tuple_left_data.root
 
     # Check whether the tuple is a char or already merged tree
     tuple_right_data = tuple_right[0]
@@ -80,7 +71,7 @@ def build_sub_tree_from_tuples(tuple_left, tuple_right):
     if isinstance(tuple_right_data, str):
         huff_node_right = HuffmanNode(data=tuple_right_data, node_type='character', frequency=tuple_right_freq)
     else:
-        huff_node_right = HuffmanNode(data=tuple_right_data.root, node_type='frequency', frequency=tuple_right_freq)
+        huff_node_right = tuple_right_data.root
 
     # Construct a summary frequency node
     freq_sum = tuple_left_freq + tuple_right_freq
@@ -89,8 +80,6 @@ def build_sub_tree_from_tuples(tuple_left, tuple_right):
     summary_freq_node.left = huff_node_left
     summary_freq_node.right = huff_node_right
     sub_tree.root = summary_freq_node
-
-    # print(f"sub-tree: {sub_tree}")
 
     return sub_tree, freq_sum
 
@@ -141,8 +130,8 @@ def build_huffman_tree(data):
     return huffman_tree
 
 
-# input_str = "The bird is the word"
-input_str = "abc"
+input_str = "The bird is the word"
+# input_str = "abc"
 
 huffman_tree = build_huffman_tree(input_str)
 print(huffman_tree)
