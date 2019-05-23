@@ -191,6 +191,49 @@ def encode_data_with_huffman_tree(huffman_tree, data):
     return huffman_tree, encoded_data
 
 
+def huffman_decoding(data, tree):
+    """
+    Perform decoding base on encoded data and a Huffman Tree
+    :param data: encoded data
+    :param tree: Huffman tree for the encoded data
+    :return: decoded data
+    """
+
+    decoded_data = ""
+
+    encoded_data = data
+
+    current_node = tree.root
+
+    encoded_bit_stream = ""
+    while True:
+        if len(encoded_data) == 0:
+            break
+
+        encoded_bit = encoded_data[0]
+        encoded_data = encoded_data[1:]
+
+        if encoded_bit == '0':
+            nav_direction = 'left'
+        else:
+            nav_direction = 'right'
+
+        encoded_bit_stream += encoded_bit
+
+        if nav_direction == 'left':
+            current_node = current_node.left
+        else:
+            current_node = current_node.right
+
+        if current_node.node_type == 'character':
+            decoded_data += current_node.data
+
+            current_node = tree.root
+            encoded_bit_stream = ""
+
+    return decoded_data
+
+
 input_str = "The bird is the word"
 # input_str = "abc"
 
@@ -203,4 +246,7 @@ print("------Trimmed Huffman Tree----------")
 print(trimmed_huffmman_tree)
 
 huffman_tree, encoded_data = encode_data_with_huffman_tree(trimmed_huffmman_tree, input_str)
-print(encoded_data)
+print(f"encoded_data: {encoded_data}")
+
+decoded_data = huffman_decoding(encoded_data, huffman_tree)
+print(f"decoded_data: {decoded_data}")
