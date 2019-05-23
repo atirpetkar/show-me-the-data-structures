@@ -153,8 +153,46 @@ def trim_huffman_tree(huffman_tree):
     return huffman_tree
 
 
-# input_str = "The bird is the word"
-input_str = "abc"
+def encode_data_with_huffman_tree(huffman_tree, data):
+    """
+    Encode data with the provided Huffman Tree
+    :param huffman_tree: trimmed Huffman Tree
+    :param data: the data to encode
+    :return: Huffman tree, encoded data
+    """
+    encoded_data = ""
+
+    # A dict to store the mapping of each character to Huffman code
+    char_code_dict = dict()
+
+    def build_char_code_dict(node, char_code):
+        if node.node_type == 'character':
+            char_code_dict[node.data] = char_code
+            return
+
+        if node.left:
+            char_code += '0'
+            build_char_code_dict(node.left, char_code)
+
+        if node.right:
+            char_code = char_code[:-1]
+            char_code += '1'
+            build_char_code_dict(node.right, char_code)
+
+    build_char_code_dict(huffman_tree.root, "")
+
+    print('char_code_dict')
+    print(char_code_dict)
+
+    # Encode data
+    for char in data:
+        encoded_data += char_code_dict[char]
+
+    return huffman_tree, encoded_data
+
+
+input_str = "The bird is the word"
+# input_str = "abc"
 
 huffman_tree = build_huffman_tree(input_str)
 print("------Huffman Tree----------")
@@ -163,3 +201,6 @@ print(huffman_tree)
 trimmed_huffmman_tree = trim_huffman_tree(huffman_tree)
 print("------Trimmed Huffman Tree----------")
 print(trimmed_huffmman_tree)
+
+huffman_tree, encoded_data = encode_data_with_huffman_tree(trimmed_huffmman_tree, input_str)
+print(encoded_data)
