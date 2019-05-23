@@ -153,8 +153,8 @@ def trim_huffman_tree(huffman_tree):
     return huffman_tree
 
 
-input_str = "The bird is the word"
-# input_str = "abc"
+# input_str = "The bird is the word"
+input_str = "abc"
 
 huffman_tree = build_huffman_tree(input_str)
 print("------Huffman Tree----------")
@@ -163,4 +163,3 @@ print(huffman_tree)
 trimmed_huffmman_tree = trim_huffman_tree(huffman_tree)
 print("------Trimmed Huffman Tree----------")
 print(trimmed_huffmman_tree)
-
