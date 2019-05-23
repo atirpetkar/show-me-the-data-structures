@@ -125,7 +125,30 @@ def build_huffman_tree(data):
         input_str_char_freq_tuple_list.sort(key=lambda r: r[1])
         # print(input_str_char_freq_tuple_list)
 
-    huffman_tree = input_str_char_freq_tuple_list[0]
+    huffman_tree = input_str_char_freq_tuple_list[0][0]
+
+    return huffman_tree
+
+
+def trim_huffman_tree(huffman_tree):
+    """
+    Trim a Huffman tree by setting all node's frequency to zero
+    :param huffman_tree:
+    :return: trimmed Huffman tree
+    """
+
+    def trim_node_frequency(node):
+
+        if node is None:
+            return
+
+        # Reset frequency to zero
+        node.frequency = 0
+
+        trim_node_frequency(node.left)
+        trim_node_frequency(node.right)
+
+    trim_node_frequency(huffman_tree.root)
 
     return huffman_tree
 
@@ -134,4 +157,10 @@ input_str = "The bird is the word"
 # input_str = "abc"
 
 huffman_tree = build_huffman_tree(input_str)
+print("------Huffman Tree----------")
 print(huffman_tree)
+
+trimmed_huffmman_tree = trim_huffman_tree(huffman_tree)
+print("------Trimmed Huffman Tree----------")
+print(trimmed_huffmman_tree)
+
