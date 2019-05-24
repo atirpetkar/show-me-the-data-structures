@@ -272,7 +272,7 @@ if __name__ == "__main__":
     # Should print 69
     print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     # Should print "The bird is the word"
-    print("The content of the encoded data is: {}\n".format(decoded_data))
+    print("The content of the decoded data is: {}\n".format(decoded_data))
 
     print("Test case 2 - empty sentence")
     a_great_sentence = ""
