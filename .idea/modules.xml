@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../problems-vs-algorithms/.idea/problems-vs-algorithms.iml" filepath="$PROJECT_DIR$/../problems-vs-algorithms/.idea/problems-vs-algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/../python-data-structure-algo/.idea/python-data-structure-algo.iml" filepath="$PROJECT_DIR$/../python-data-structure-algo/.idea/python-data-structure-algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/show-me-the-data-structures.iml" filepath="$PROJECT_DIR$/.idea/show-me-the-data-structures.iml" />
     </modules>
